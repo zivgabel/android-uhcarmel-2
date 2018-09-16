@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+    android:layout_marginStart="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:elevation="16dp"
+    android:layoutDirection="rtl">
+
+    <TextView
+        android:id="@+id/location_name_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="12dp"
+        android:textAppearance="?android:attr/textAppearanceListItem"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Message" />
+
+    <ImageButton
+        android:id="@+id/location_maps_image_button"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@drawable/baseline_time_to_leave_black_36"
+        android:elevation="2dp"
+        android:translationZ="8dp"
+        android:backgroundTint="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toStartOf="@+id/location_whatsapp_image_button"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/location_name_text_view"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="16dp"/>
+
+    <ImageButton
+        android:id="@+id/location_whatsapp_image_button"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:elevation="2dp"
+        android:translationZ="8dp"
+        android:background="@drawable/baseline_share_black_36"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+</android.support.constraint.ConstraintLayout>

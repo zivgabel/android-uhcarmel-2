@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_locations"
+            android:icon="@drawable/baseline_place_black_36"
+            android:title="@string/nav_locations_label" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Gallery"
+            android:visible="false"/>
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Slideshow"
+            android:visible="false"/>
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Tools"
+            android:visible="false"/>
+    </group>
+
+    <group
+        android:id="@+id/nav_group_warehouse">
+    <item
+        android:title="@string/nav_warhouse_group_title">
+
+        <menu>
+            <item
+                android:id="@+id/nav_orders"
+                android:icon="@drawable/baseline_list_alt_24"
+                android:title="@string/nav_orders_label"
+                />
+            <item
+                android:id="@+id/nav_new_order"
+                android:icon="@drawable/baseline_add_circle_24"
+                android:title="@string/nav_new_order_label"
+                />
+
+        </menu>
+
+
+
+    </item>
+    </group>
+
+    <item android:title="Communicate"
+        android:visible="false">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">איחוד הצלה כרמל</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="no_waze_installed">וויז לא מותקן</string>
+    <string name="nav_locations_label">מיקומים</string>
+    <string name="nav_warhouse_group_title">מחסן</string>
+    <string name="nav_orders_label">הזמנות</string>
+    <string name="nav_new_order_label">הזמנה חדשה</string>
+    <string name="send_order_button_label">שלח הזמנה</string>
+    <string name="preference_file_key">uhcareml_so</string>
+    <string name="user_uid_key">USER_UID</string>
+    <string name="display_name_key">USER_DISPLAY_NAME</string>
+    <string name="is_admin">IS_ADMIN</string>
+    <string name="is_shabat_admin">IS_SHABAT_ADMIN</string>
+    <string name="is_wh_admin">IS_WH_ADMIN</string>
+    <string name="user_mirs">USER_MIRS</string>
+    <string name="order_success">ההזמנה נשלחה בהצלחה</string>
+    <string name="new_order_no_items">לא סומנו שום פריטים</string>
+    <string name="title_order_list">Orders</string>
+    <string name="title_order_detail">Order Detail</string>
+    <string name="signed_id">נרשמת בהצלחה</string>
+</resources>

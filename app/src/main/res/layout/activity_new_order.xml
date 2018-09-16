@@ -1,0 +1,37 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:isScrollContainer="true"
+    tools:context=".NewOrderActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/new_order_items_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:scrollbars="vertical"
+        android:elevation="0dp"
+        tools:listitem="@layout/new_order_row"
+        />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/new_order_fab"
+        android:layout_width="wrap_content"
+        app:rippleColor="@android:color/holo_red_light"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:background="@android:drawable/ic_menu_send"
+        android:elevation="12dp"
+        android:src="@android:drawable/ic_menu_send"
+        android:tooltipText="@string/send_order_button_label"
+        app:backgroundTint="@color/colorPrimary"
+        app:elevation="6dp"
+        android:clickable="true"
+        app:pressedTranslationZ="12dp"
+        android:focusable="true" />
+
+
+</FrameLayout>
