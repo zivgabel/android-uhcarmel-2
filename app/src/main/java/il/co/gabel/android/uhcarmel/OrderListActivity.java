@@ -54,14 +54,7 @@ public class OrderListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -78,10 +71,10 @@ public class OrderListActivity extends AppCompatActivity {
 
 
 
+
         recyclerView = findViewById(R.id.order_list);
         assert recyclerView != null;
         setupRecyclerView(recyclerView);
-
         attachListener();
     }
 
@@ -98,6 +91,7 @@ public class OrderListActivity extends AppCompatActivity {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     Order order = dataSnapshot.getValue(Order.class);
+                    order.setFb_key(dataSnapshot.getKey());
                     OrderListAdapter.addItem(order);
                     if(adapter!=null){
                         adapter.notifyDataSetChanged();
@@ -111,7 +105,8 @@ public class OrderListActivity extends AppCompatActivity {
 
                 @Override
                 public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
+                    Order order = dataSnapshot.getValue(Order.class);
+                    OrderListAdapter.removeItem(order,adapter);
                 }
 
                 @Override

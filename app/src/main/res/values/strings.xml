@@ -21,7 +21,7 @@
     <string name="user_mirs">USER_MIRS</string>
     <string name="order_success">ההזמנה נשלחה בהצלחה</string>
     <string name="new_order_no_items">לא סומנו שום פריטים</string>
-    <string name="title_order_list">Orders</string>
-    <string name="title_order_detail">Order Detail</string>
+    <string name="title_order_list">הזמנות</string>
+    <string name="title_order_detail">פרטי הזמנה</string>
     <string name="signed_id">נרשמת בהצלחה</string>
 </resources>

@@ -10,6 +10,7 @@ public class Order {
     private Map<String,Integer> items=new HashMap<>();
     private int mirs;
     private Date order_date;
+    private String fb_key;
 
     public Order(){}
 
@@ -42,6 +43,14 @@ public class Order {
 
     public void setOrder_date(Date order_date) {
         this.order_date = order_date;
+    }
+
+    public String getFb_key() {
+        return fb_key;
+    }
+
+    public void setFb_key(String fb_key) {
+        this.fb_key = fb_key;
     }
 
     @Override

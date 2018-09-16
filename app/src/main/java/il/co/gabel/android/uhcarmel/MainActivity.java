@@ -57,9 +57,11 @@ public class MainActivity extends AppCompatActivity
             Log.e(TAG, "onCreate: from intent");
             String a = intent.getStringExtra(Intent.EXTRA_TEXT);
             Log.e(TAG, "onCreate: intent extra is "+a);
-            if(a.equals(getString(R.string.order_success))){
-                Log.e(TAG, "onCreate: creating toast");
-                Toast.makeText(this,a,Toast.LENGTH_LONG).show();
+            if(a!=null) {
+                if (a.equals(getString(R.string.order_success))) {
+                    Log.e(TAG, "onCreate: creating toast");
+                    Toast.makeText(this, a, Toast.LENGTH_LONG).show();
+                }
             }
         }
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -84,27 +86,28 @@ public class MainActivity extends AppCompatActivity
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setOnCreateContextMenuListener(this);
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if(user!=null){
-                    Toast.makeText(getApplicationContext(),getString(R.string.signed_id),Toast.LENGTH_LONG).show();
-                    onSignedInInitialize(user);
-                } else {
-                    onSignedOutCleanup();
-                    startActivityForResult(
-                            AuthUI.getInstance()
-                                    .createSignInIntentBuilder()
-                                    .setAvailableProviders(Arrays.asList(
-                                            new AuthUI.IdpConfig.EmailBuilder().build(),
-                                            new AuthUI.IdpConfig.GoogleBuilder().build()
-                                    )).build(),
-                            RC_SIGN_IN);
+        if(authStateListener==null) {
+            authStateListener = new FirebaseAuth.AuthStateListener() {
+                @Override
+                public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                    if (user != null) {
+                        onSignedInInitialize(user);
+                    } else {
+                        onSignedOutCleanup();
+                        startActivityForResult(
+                                AuthUI.getInstance()
+                                        .createSignInIntentBuilder()
+                                        .setAvailableProviders(Arrays.asList(
+                                                new AuthUI.IdpConfig.EmailBuilder().build(),
+                                                new AuthUI.IdpConfig.GoogleBuilder().build()
+                                        )).build(),
+                                RC_SIGN_IN);
+                    }
                 }
-            }
-        };
-        firebaseAuth.addAuthStateListener(authStateListener);
+            };
+            firebaseAuth.addAuthStateListener(authStateListener);
+        }
         getUserDetails();
     }
     @Override
@@ -127,7 +130,7 @@ public class MainActivity extends AppCompatActivity
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(this, "Signed in", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.signed_id), Toast.LENGTH_LONG).show();
                 getUserDetails();
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this, "Sign in canceled", Toast.LENGTH_SHORT).show();
@@ -201,8 +204,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void getUserDetails(){
-        firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference().child("users");
+        if(firebaseDatabase==null) {
+            firebaseDatabase = FirebaseDatabase.getInstance();
+        }
+        if(databaseReference==null) {
+            databaseReference = firebaseDatabase.getReference().child("users");
+        }
         attachListeners();
     }
     private void attachListeners(){
@@ -260,8 +267,17 @@ public class MainActivity extends AppCompatActivity
                 }
             };
             databaseReference.addChildEventListener(listener);
+
         }
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        databaseReference.removeEventListener(listener);
+        listener=null;
+    }
+
     public final void setViewsVisibilty(Boolean admin, Boolean shabat_admin, Boolean wh_admin){
         Log.e(TAG, "setViewsVisibilty: "+admin+" "+shabat_admin+" "+wh_admin );
         ordersMenuItem=navigationView.getMenu().findItem(R.id.nav_orders);

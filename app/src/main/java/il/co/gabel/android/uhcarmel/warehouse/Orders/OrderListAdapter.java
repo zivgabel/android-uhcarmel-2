@@ -4,10 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -30,15 +34,38 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListHolder>{
         mTwoPane = twoPane;
     }
 
+    private void setFabAction(Order order){
+        removeItem(order,this);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("warehouse").child("orders");
+        DatabaseReference completed_reference = FirebaseDatabase.getInstance().getReference().child("warehouse").child("completed_orders");
+        reference.child(order.getFb_key()).removeValue();
+        completed_reference.push().setValue(order);
+        Bundle arguments = new Bundle();
+        arguments.putString(OrderDetailFragment.ARG_ITEM_ID, "aaa");
+        OrderDetailFragment fragment = new OrderDetailFragment();
+        fragment.setArguments(arguments);
+        mParentActivity.getSupportFragmentManager().beginTransaction().replace(R.id.order_detail_container, fragment).commit();
+        FloatingActionButton fab = mParentActivity.findViewById(R.id.fab);
+        fab.setVisibility(View.GONE);
+    }
+
     private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Order item = (Order) view.getTag();
+            final Order item = (Order) view.getTag();
             if (mTwoPane) {
                 Bundle arguments = new Bundle();
                 arguments.putString(OrderDetailFragment.ARG_ITEM_ID, item.getOrder_date().toString());
                 OrderDetailFragment fragment = new OrderDetailFragment();
                 fragment.setArguments(arguments);
+                FloatingActionButton fab = mParentActivity.findViewById(R.id.fab);
+                fab.setVisibility(View.VISIBLE);
+                fab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setFabAction(item);
+                    }
+                });
                 mParentActivity.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.order_detail_container, fragment)
                         .commit();
@@ -87,5 +114,17 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListHolder>{
     }
 
 
+    public static void removeItem(Order order,OrderListAdapter adapter) {
 
+        Iterator<Order> i = orders.iterator();
+        while (i.hasNext()){
+            Order o = i.next();
+            if(o.equals(order)){
+                i.remove();
+                if(adapter!=null) {
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        }
+    }
 }

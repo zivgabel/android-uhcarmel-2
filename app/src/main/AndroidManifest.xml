@@ -19,7 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LocationsActivity" />
+        <activity android:name=".LocationsActivity" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="il.co.gabel.android.uhcarmel.MainActivity" />
+        </activity>
         <activity android:name=".NewOrderActivity" />
         <activity
             android:name=".OrderListActivity"
@@ -29,12 +33,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="il.co.gabel.android.uhcarmel.MainActivity" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".OrderDetailActivity"

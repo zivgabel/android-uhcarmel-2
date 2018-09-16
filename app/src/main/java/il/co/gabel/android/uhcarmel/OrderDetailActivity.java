@@ -11,6 +11,7 @@ import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +30,8 @@ import il.co.gabel.android.uhcarmel.warehouse.Orders.OrderListAdapter;
  */
 public class OrderDetailActivity extends AppCompatActivity {
 
+    private Order order;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +39,22 @@ public class OrderDetailActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
+        String item_id= getIntent().getStringExtra(OrderDetailFragment.ARG_ITEM_ID);
+        if(item_id!=null) {
+            order=OrderListAdapter.getOrder(item_id);
+        }
+
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if(order!=null){
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("warehouse").child("orders");
+                    DatabaseReference completed_reference = FirebaseDatabase.getInstance().getReference().child("warehouse").child("completed_orders");
+                    reference.child(order.getFb_key()).removeValue();
+                    completed_reference.push().setValue(order);
+                    onBackPressed();
+                }
             }
         });
 
@@ -63,8 +77,7 @@ public class OrderDetailActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(OrderDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(OrderDetailFragment.ARG_ITEM_ID));
+            arguments.putString(OrderDetailFragment.ARG_ITEM_ID,getIntent().getStringExtra(OrderDetailFragment.ARG_ITEM_ID));
             OrderDetailFragment fragment = new OrderDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
