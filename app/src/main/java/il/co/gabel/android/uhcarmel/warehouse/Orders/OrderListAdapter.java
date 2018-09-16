@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListHolder>{
     private final OrderListActivity mParentActivity;
     private static List<Order> orders = new ArrayList<>();
     private final boolean mTwoPane;
+    private static final String TAG=OrderListAdapter.class.getSimpleName();
 
     public OrderListAdapter(OrderListActivity parent,List<Order> items,boolean twoPane) {
         orders = items;
@@ -35,7 +37,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListHolder>{
     }
 
     private void setFabAction(Order order){
-        removeItem(order,this);
+        Log.e(TAG, "OrderListAdapter setFabAction: removing item with uid "+order.getFb_key() );
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("warehouse").child("orders");
         DatabaseReference completed_reference = FirebaseDatabase.getInstance().getReference().child("warehouse").child("completed_orders");
         reference.child(order.getFb_key()).removeValue();

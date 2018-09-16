@@ -8,6 +8,13 @@ public class User {
 
     public User(){}
 
+    public User(int mirs, Boolean admin, Boolean shabat_admin, Boolean  wh_admin){
+        this.admin=admin;
+        this.mirs=mirs;
+        this.shabat_admin=shabat_admin;
+        this.wh_admin=wh_admin;
+    }
+
     public int getMirs() {
         return mirs;
     }

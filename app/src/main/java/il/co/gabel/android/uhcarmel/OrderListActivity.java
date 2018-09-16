@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.View;
 import android.support.v4.app.NavUtils;
@@ -45,6 +46,8 @@ public class OrderListActivity extends AppCompatActivity {
     private OrderListAdapter adapter;
     private DatabaseReference databaseReference;
     private ChildEventListener listener;
+    private static final String TAG=OrderListActivity.class.getSimpleName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,9 +71,6 @@ public class OrderListActivity extends AppCompatActivity {
             // activity should be in two-pane mode.
             mTwoPane = true;
         }
-
-
-
 
         recyclerView = findViewById(R.id.order_list);
         assert recyclerView != null;
@@ -105,6 +105,7 @@ public class OrderListActivity extends AppCompatActivity {
 
                 @Override
                 public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                    Log.e(TAG, "OrderList onChildRemoved: uid: "+dataSnapshot.getKey() );
                     Order order = dataSnapshot.getValue(Order.class);
                     OrderListAdapter.removeItem(order,adapter);
                 }

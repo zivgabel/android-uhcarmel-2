@@ -3,8 +3,8 @@ package il.co.gabel.android.uhcarmel.locations;
 public class Location {
 
     private String name;
-    private Float altitude;
-    private Float longitude;
+    private Double altitude;
+    private Double longitude;
 
     public Location(){}
 
@@ -13,6 +13,11 @@ public class Location {
         return "https://waze.com/ul?ll="+ String.valueOf(altitude) + "," + String.valueOf(longitude);
     }
 
+    public Location(String name, Double altitude, Double longitude){
+        this.name=name;
+        this.altitude=altitude;
+        this.longitude=longitude;
+    }
 
 
     public String getName() {
@@ -23,19 +28,19 @@ public class Location {
         this.name = name;
     }
 
-    public Float getAltitude() {
+    public Double getAltitude() {
         return altitude;
     }
 
-    public void setAltitude(Float altitude) {
+    public void setAltitude(Double altitude) {
         this.altitude = altitude;
     }
 
-    public Float getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Float longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 }

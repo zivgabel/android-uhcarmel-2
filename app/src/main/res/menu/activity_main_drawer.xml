@@ -35,20 +35,17 @@
                 android:id="@+id/nav_orders"
                 android:icon="@drawable/baseline_list_alt_24"
                 android:title="@string/nav_orders_label"
+                android:visible="false"
                 />
             <item
                 android:id="@+id/nav_new_order"
                 android:icon="@drawable/baseline_add_circle_24"
                 android:title="@string/nav_new_order_label"
+                android:visible="false"
                 />
-
         </menu>
-
-
-
     </item>
     </group>
-
     <item android:title="Communicate"
         android:visible="false">
         <menu>

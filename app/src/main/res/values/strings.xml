@@ -2,10 +2,10 @@
     <string name="app_name">איחוד הצלה כרמל</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">איחוד הצלה כרמל</string>
+    <string name="nav_header_subtitle">במקרה חרום חייג 1221</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">הגדרות</string>
     <string name="no_waze_installed">וויז לא מותקן</string>
     <string name="nav_locations_label">מיקומים</string>
     <string name="nav_warhouse_group_title">מחסן</string>
@@ -24,4 +24,16 @@
     <string name="title_order_list">הזמנות</string>
     <string name="title_order_detail">פרטי הזמנה</string>
     <string name="signed_id">נרשמת בהצלחה</string>
+    <string name="action_call_1221">התקשר 1221</string>
+    <string name="action_goto_fb">בקר בעמוד הפייסבוק שלנו</string>
+    <string name="action_send_my_location">שלח את המיקום שלך</string>
+    <string name="my_location">המיקום שלי</string>
+    <string name="no_location_detected">לא נמצא מיקום</string>
+    <string name="permission_rationale">על מנת לשלוח את המיקום שלך האפליקציה זקוקה לאישור כישה למיקום של המכשיר</string>
+    <string name="permission_denied_explanation">לא ניתן לקבל הרשאה למיקום</string>
+    <string name="settings">הגדרות</string>
+    <string name="send_location_question">שלח את המיקום</string>
+    <string name="location_found">המיקום נמצא</string>
+    <string name="looking_for_location">מחפש מיקום</string>
+    <string name="united_phone_number">1221</string>
 </resources>
