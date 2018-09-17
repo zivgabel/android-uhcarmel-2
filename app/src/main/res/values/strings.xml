@@ -13,12 +13,12 @@
     <string name="nav_new_order_label">הזמנה חדשה</string>
     <string name="send_order_button_label">שלח הזמנה</string>
     <string name="preference_file_key">uhcareml_so</string>
-    <string name="user_uid_key">USER_UID</string>
-    <string name="display_name_key">USER_DISPLAY_NAME</string>
-    <string name="is_admin">IS_ADMIN</string>
-    <string name="is_shabat_admin">IS_SHABAT_ADMIN</string>
-    <string name="is_wh_admin">IS_WH_ADMIN</string>
-    <string name="user_mirs">USER_MIRS</string>
+    <string name="user_uid_key">SP_USER_UID</string>
+    <string name="display_name_key">SP_USER_DISPLAY_NAME</string>
+    <string name="is_admin">SP_USER_IS_ADMIN</string>
+    <string name="is_shabat_admin">SP_USER_IS_SHABAT_ADMIN</string>
+    <string name="is_wh_admin">SP_USER_IS_WH_ADMIN</string>
+    <string name="user_mirs">SP_USER_MIRS</string>
     <string name="order_success">ההזמנה נשלחה בהצלחה</string>
     <string name="new_order_no_items">לא סומנו שום פריטים</string>
     <string name="title_order_list">הזמנות</string>
@@ -36,4 +36,14 @@
     <string name="location_found">המיקום נמצא</string>
     <string name="looking_for_location">מחפש מיקום</string>
     <string name="united_phone_number">1221</string>
+    <string name="sp_last_name">SP_USER_LAST_NAME</string>
+    <string name="sp_first_name">SP_USER_FIRST_NAME</string>
+    <string name="title_activity_shabat_register">ShabatRegisterActivity</string>
+    <string name="shabat_spiner_tv_text">עיר</string>
+    <string name="shabat_spiner_tv_comment">הערות</string>
+    <string name="shabat_spiner_tv_address">כתובת</string>
+    <string name="shabat_firstname_label">שם</string>
+    <string name="shabat_lastname_label">משפחה</string>
+    <string name="shabat_drawer_title">שבת</string>
+    <string name="nav_shabat_title">רישום לשבת</string>
 </resources>

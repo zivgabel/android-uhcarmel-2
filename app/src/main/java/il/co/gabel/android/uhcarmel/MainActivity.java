@@ -3,7 +3,6 @@ package il.co.gabel.android.uhcarmel;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -15,9 +14,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -32,12 +29,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -48,7 +42,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
-import java.util.Locale;
 
 import il.co.gabel.android.uhcarmel.security.User;
 
@@ -156,9 +149,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-        if (!checkPermissions()) {
-            requestPermissions();
-        }
+
     }
 
     private void setMainButtons(){
@@ -381,11 +372,13 @@ public class MainActivity extends AppCompatActivity
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(getApplicationContext(), getString(R.string.signed_id), Toast.LENGTH_LONG).show();
                 getUserDetails();
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this, "Sign in canceled", Toast.LENGTH_SHORT).show();
                 finish();
+            }
+            if (!checkPermissions()) {
+                requestPermissions();
             }
         }
     }
@@ -429,8 +422,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_orders) {
             Intent intent = new Intent(this,OrderListActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_share) {
-
+        } else if (id == R.id.nav_shabat_registration) {
+            Intent intent = new Intent(this,ShabatRegisterActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_send) {
 
         }
@@ -475,13 +469,9 @@ public class MainActivity extends AppCompatActivity
                     if (!duid.equals(uid)) {
                         return;
                     }
+                    User user = dataSnapshot.getValue(User.class);
                     Context context = getApplicationContext();
-                    SharedPreferences.Editor editor = Utils.getSharedPreferencesEditor(getApplicationContext());
-                    editor.remove(getString(R.string.is_admin));
-                    editor.remove(getString(R.string.is_shabat_admin));
-                    editor.remove(getString(R.string.is_wh_admin));
-                    editor.remove(getString(R.string.user_mirs));
-                    editor.commit();
+                    user.removeData(context);
                     setViewsVisibilty();
                 }
 
@@ -492,12 +482,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     User user = dataSnapshot.getValue(User.class);
                     Context context = getApplicationContext();
-                    SharedPreferences.Editor editor = Utils.getSharedPreferencesEditor(getApplicationContext());
-                    editor.putBoolean(getString(R.string.is_admin), user.getAdmin());
-                    editor.putBoolean(getString(R.string.is_shabat_admin), user.getShabat_admin());
-                    editor.putBoolean(getString(R.string.is_wh_admin), user.getWh_admin());
-                    editor.putInt(getString(R.string.user_mirs), user.getMirs());
-                    editor.commit();
+                    user.saveData(context);
                     setViewsVisibilty();
                 }
 
@@ -525,7 +510,6 @@ public class MainActivity extends AppCompatActivity
                 public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     Log.e(TAG, "onChildMoved: UID " + dataSnapshot.getKey());
                     deleteHandler(dataSnapshot);
-                    setViewsVisibilty();
                 }
 
                 @Override

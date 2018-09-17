@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ShabatRegisterActivity"
+    tools:showIn="@layout/activity_shabat_register"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    >
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TableRow>
+            <Switch
+                android:id="@+id/shabat_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:text="Switch" />
+        </TableRow>
+
+        <TableRow android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:text="@string/shabat_spiner_tv_text" />
+
+            <Spinner
+                android:id="@+id/shabat_cities_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_weight="6" />
+        </TableRow>
+
+        <TableRow android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_weight="2"
+                android:text="@string/shabat_spiner_tv_address" />
+
+            <EditText
+                android:id="@+id/shabat_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_weight="6" />
+        </TableRow>
+
+        <TableRow android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_weight="2"
+                android:text="@string/shabat_spiner_tv_comment" />
+
+            <EditText
+                android:id="@+id/shabat_comments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_weight="6"
+                android:tooltipText="asasassa" />
+        </TableRow>
+
+        <TableRow android:orientation="horizontal">
+
+            <view
+                android:layout_width="match_parent"
+                android:layout_height="8sp"
+                android:layout_weight="4"
+                android:background="@android:color/holo_orange_light" />
+        </TableRow>
+
+        <TableRow
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/shabat_firstname_label" />
+
+            <TextView
+                android:id="@+id/shabat_firstname_text"
+                android:layout_weight="3"
+                android:text="נפתלי" />
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/shabat_lastname_label"
+                />
+            <TextView
+                android:id="@+id/shabat_lasttname_text"
+                android:layout_weight="3"
+                android:text="פיירברגר" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

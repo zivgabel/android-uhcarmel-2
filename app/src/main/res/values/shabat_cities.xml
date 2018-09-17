@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="shabat_cities_array">
+        <item>חיפה</item>
+        <item>קרית אתא</item>
+        <item>קרית חיים</item>
+        <item>קרית מוצקין</item>
+        <item>קרית שמואל</item>
+        <item>קרית ביאליק</item>
+        <item>קרית ים</item>
+        <item>נשר</item>
+        <item>רכסים</item>
+        <item>דלית אל כרמל \ עוספיה</item>
+        <item>קרית טבעון</item>
+        <item>רמת ישי</item>
+        <item>אלוני אבא</item>
+        <item>אלוני אבא</item>
+        <item>טירת הכרמל</item>
+    </string-array>
+</resources>

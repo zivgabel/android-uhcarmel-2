@@ -38,9 +38,16 @@ public class Utils {
         Boolean isAdmin=sp.getBoolean(context.getString(R.string.is_admin),false);
         Boolean isShabatAdmin=sp.getBoolean(context.getString(R.string.is_shabat_admin),false);
         Boolean isWhAdmin=sp.getBoolean(context.getString(R.string.is_wh_admin),false);
+        String first_name=sp.getString(context.getString(R.string.sp_first_name),"");
+        String last_name=sp.getString(context.getString(R.string.sp_last_name),"");
 
-        User user = new User(mirs,isAdmin,isShabatAdmin,isWhAdmin);
+        User user = new User(mirs,isAdmin,isShabatAdmin,isWhAdmin,first_name,last_name);
         return user;
+    }
+
+    public static String getUserUID(Context context){
+        SharedPreferences sp = getSharedPreferences(context);
+        return sp.getString(context.getString(R.string.user_uid_key),"");
     }
 
 
