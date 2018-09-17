@@ -46,4 +46,5 @@
     <string name="shabat_lastname_label">משפחה</string>
     <string name="shabat_drawer_title">שבת</string>
     <string name="nav_shabat_title">רישום לשבת</string>
+    <string name="FIREBASE_DATABASE_PREFIX">production</string>
 </resources>

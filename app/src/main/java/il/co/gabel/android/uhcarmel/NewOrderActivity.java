@@ -21,7 +21,6 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -50,7 +49,7 @@ public class NewOrderActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         DividerItemDecoration decoration = new DividerItemDecoration(recyclerView.getContext(),LinearLayoutManager.VERTICAL);
         recyclerView.addItemDecoration(decoration);
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("warehouse").child("items");
+        databaseReference = Utils.getFBDBReference(getApplicationContext()).child("warehouse").child("items");
         attachListeners();
         FloatingActionButton fab = findViewById(R.id.new_order_fab);
 
@@ -65,7 +64,7 @@ public class NewOrderActivity extends AppCompatActivity {
                 int user_mirs=sp.getInt(getString(R.string.user_mirs),0);
                 Date date = new Date();
                 Order order = new Order(adapter.getOrdered_items(),user_mirs,date);
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("warehouse").child("orders");
+                DatabaseReference reference = Utils.getFBDBReference(getApplicationContext()).child("warehouse").child("orders");
                 reference.push().setValue(order);
                 Toast.makeText(v.getContext(),getString(R.string.order_success),Toast.LENGTH_LONG).show();
                 adapter.getOrdered_items().clear();

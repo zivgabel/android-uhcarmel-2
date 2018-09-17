@@ -17,7 +17,6 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import il.co.gabel.android.uhcarmel.security.User;
 
@@ -29,7 +28,6 @@ public class ShabatRegisterActivity extends AppCompatActivity {
     private EditText mShabatComment;
     private ArrayAdapter<CharSequence> mSpinerAdapter;
 
-    private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
     private ChildEventListener mChildEventListener;
 
@@ -53,8 +51,7 @@ public class ShabatRegisterActivity extends AppCompatActivity {
 
         User user = Utils.currentUser(getApplicationContext());
 
-        mFirebaseDatabase=FirebaseDatabase.getInstance();
-        mDatabaseReference=mFirebaseDatabase.getReference().child("shabat").child(Utils.getUserUID(getApplicationContext()));
+        mDatabaseReference=Utils.getFBDBReference(getApplicationContext()).child("shabat").child(Utils.getUserUID(getApplicationContext()));
 
 
 

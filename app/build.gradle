@@ -24,6 +24,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
         }
+        debug {
+            resValue 'string', 'changedValue', '"debug version"'
+        }
     }
 }
 

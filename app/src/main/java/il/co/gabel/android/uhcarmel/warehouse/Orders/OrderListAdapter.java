@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,6 +21,7 @@ import il.co.gabel.android.uhcarmel.OrderDetailActivity;
 import il.co.gabel.android.uhcarmel.OrderDetailFragment;
 import il.co.gabel.android.uhcarmel.OrderListActivity;
 import il.co.gabel.android.uhcarmel.R;
+import il.co.gabel.android.uhcarmel.Utils;
 import il.co.gabel.android.uhcarmel.warehouse.Order;
 
 public class OrderListAdapter extends RecyclerView.Adapter<OrderListHolder>{
@@ -36,10 +36,10 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListHolder>{
         mTwoPane = twoPane;
     }
 
-    private void setFabAction(Order order){
+    private void setFabAction(Order order, View v){
         Log.e(TAG, "OrderListAdapter setFabAction: removing item with uid "+order.getFb_key() );
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("warehouse").child("orders");
-        DatabaseReference completed_reference = FirebaseDatabase.getInstance().getReference().child("warehouse").child("completed_orders");
+        DatabaseReference reference = Utils.getFBDBReference(v.getContext()).child("warehouse").child("orders");
+        DatabaseReference completed_reference = Utils.getFBDBReference(v.getContext()).child("warehouse").child("completed_orders");
         reference.child(order.getFb_key()).removeValue();
         completed_reference.push().setValue(order);
         Bundle arguments = new Bundle();
@@ -65,7 +65,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListHolder>{
                 fab.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        setFabAction(item);
+                        setFabAction(item,v);
                     }
                 });
                 mParentActivity.getSupportFragmentManager().beginTransaction()

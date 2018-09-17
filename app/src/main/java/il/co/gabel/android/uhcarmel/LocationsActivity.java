@@ -25,8 +25,7 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +61,7 @@ public class LocationsActivity extends AppCompatActivity {
         DividerItemDecoration decoration = new DividerItemDecoration(recyclerView.getContext(),LinearLayoutManager.VERTICAL);
         recyclerView.addItemDecoration(decoration);
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("places");
+        DatabaseReference databaseReference = Utils.getFBDBReference(getApplicationContext()).child("places");
         ChildEventListener listener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {

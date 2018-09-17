@@ -39,7 +39,6 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
 
@@ -53,7 +52,6 @@ public class MainActivity extends AppCompatActivity
     private static String FACEBOOK_URL = "https://www.facebook.com/IcodHazala";
     private static String FACEBOOK_PAGE_ID = "IcodHazala";
     private FirebaseAuth firebaseAuth;
-    private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private ChildEventListener listener;
     private FirebaseAuth.AuthStateListener authStateListener;
@@ -425,8 +423,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_shabat_registration) {
             Intent intent = new Intent(this,ShabatRegisterActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -449,11 +445,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void getUserDetails(){
-        if(firebaseDatabase==null) {
-            firebaseDatabase = FirebaseDatabase.getInstance();
-        }
         if(databaseReference==null) {
-            databaseReference = firebaseDatabase.getReference().child("users");
+            databaseReference = Utils.getFBDBReference(getApplicationContext()).child("users");
         }
         attachListeners();
     }

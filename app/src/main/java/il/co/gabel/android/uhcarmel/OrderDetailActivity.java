@@ -11,13 +11,8 @@ import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import il.co.gabel.android.uhcarmel.warehouse.Order;
 import il.co.gabel.android.uhcarmel.warehouse.Orders.OrderListAdapter;
@@ -49,8 +44,8 @@ public class OrderDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(order!=null){
-                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("warehouse").child("orders");
-                    DatabaseReference completed_reference = FirebaseDatabase.getInstance().getReference().child("warehouse").child("completed_orders");
+                    DatabaseReference reference = Utils.getFBDBReference(getApplicationContext()).child("warehouse").child("orders");
+                    DatabaseReference completed_reference = Utils.getFBDBReference(getApplicationContext()).child("warehouse").child("completed_orders");
                     reference.child(order.getFb_key()).removeValue();
                     completed_reference.push().setValue(order);
                     onBackPressed();
